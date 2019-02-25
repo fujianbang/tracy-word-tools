@@ -3,26 +3,31 @@
 
 from docx import Document
 from docx.shared import Mm
+from docx.enum.section import WD_SECTION
+
+import logging
 
 
-def check_docx(file_name):
-    document = Document(file_name)
+def create_template():
+    document = Document()
 
-    # 1. 检查页面边距
+    # 1. 设置页面边距
     sections = document.sections
-    for section in sections:
-        if section.top_margin != Mm(37):
-            print("上页边距不符合 expect:{},actually:{}".format(section.top_margin, Mm(37)))
-        if section.bottom_margin != Mm(27):
-            print("下页边距不符合 expect:{},actually:{}".format(section.bottom_margin, Mm(27)))
-        if section.left_margin != Mm(28):
-            print("左页边距不符合 expect:{},actually:{}".format(section.left_margin, Mm(28)))
-        if section.right_margin != Mm(26):
-            print("右页边距不符合 expect:{},actually:{}".format(section.right_margin, Mm(26)))
+    print("sections length: {}".format(len(sections)))
 
+    for s in sections:
+        print(s.start_type)
+
+    document.add_section(WD_SECTION.ODD_PAGE)
+
+    for s in sections:
+        print(s.start_type)
+
+    # save the docx file
+    document.save("test.docx")
 
 if __name__ == '__main__':
-    check_docx("test.docx")
+    create_template()
 
 """
 DONE 1. 公文用纸上白边为37mm，下白边为27mm，左白边为28mm,右白边为26mm。
