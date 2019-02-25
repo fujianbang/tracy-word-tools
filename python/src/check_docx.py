@@ -7,15 +7,11 @@ from docx.shared import Mm
 import utils
 
 
-def check_docx(file_name):
-    document = Document(file_name)
+"""
+1. 检查页面边距
+"""
+def check_docx(document, check_output):
 
-    # 检查输出项
-    check_output = {
-        'section': [],
-    }
-
-    # 1. 检查页面边距
     sections = document.sections
     for section in sections:
         # 上页边距检查
@@ -46,10 +42,35 @@ def check_docx(file_name):
         else:
             check_output['section'].append("右页边距：检查通过")
 
+"""
+2. 检查标题
+2号 = 22
+"""
+def check_title(document, check_output):
+    paragraphs = document.paragraphs
+    for p in paragraphs:
+        print(p.text)
+        print(p.style.font.name)
+        print("==========================")
 
+
+"""
+    main
+"""
 if __name__ == '__main__':
-    check_docx("read/demo.docx")
-    # check_docx("read/Doc1.docx")
+    # 读取待检测docx
+    document = Document("read/demo1.docx")
+
+    # 检查输出项
+    check_output = {
+        'section': [],
+    }
+
+    # 1. 检查页边距
+    check_docx(document, check_output)
+
+    # 2. 检查标题
+    check_title(document, check_output)
 
 """
 DONE 1. 公文用纸上白边为37mm，下白边为27mm，左白边为28mm,右白边为26mm。
