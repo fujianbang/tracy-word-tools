@@ -1,9 +1,9 @@
 package main
 
 import (
-	"go/check"
+	"checkdoc/core"
 )
 
 func main() {
-	check.Execute()
+	core.Execute()
 }

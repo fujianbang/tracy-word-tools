@@ -1,4 +1,4 @@
-package check
+package core
 
 /*
 Doc check rules
@@ -11,7 +11,7 @@ const (
 
 	LineSpacing = 30
 
-	TitleFontSize = 22
+	TitleFontSize = uint64(22)
 	TitleFontType = "方正小标宋_GBK"
 
 	ContentFontSize = 16
