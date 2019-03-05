@@ -2,4 +2,4 @@
 
 ## references
 
-[python-docx](https://python-docx.readthedocs.io/en/latest/)
+[gooxml](https://github.com/baliance/gooxml)
