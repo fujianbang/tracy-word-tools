@@ -93,5 +93,4 @@ func Execute() {
 
 	//p := paragraphs[0].Properties().X().Spacing.LineAttr
 	//fmt.Println(p)
-
 }
