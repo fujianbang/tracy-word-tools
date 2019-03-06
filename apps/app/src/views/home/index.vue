@@ -36,8 +36,13 @@ export default {
         }
     },
     methods: {
+        /*
+         * 进入处理页面
+         */
         enterHandle() {
-            // TODO
+            this.$router.push({
+                name: 'handle'
+            })
         }
     },
     mounted() {
