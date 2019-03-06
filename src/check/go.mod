@@ -1,3 +1,3 @@
-module checkdoc
+module check
 
-require baliance.com/gooxml v1.0.1
+go 1.12
