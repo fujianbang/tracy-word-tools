@@ -10,7 +10,7 @@
       </div>
       <p class="time">
         last update:
-        <Time :time="lastUpdateDate"></Time>
+        {{ lastUpdateDate }}
       </p>
     </div>
     <div class="right">
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
 import TracyImg from "@/assets/tracy.jpg";
 import StefanieImg from "@/assets/stefanie.jpg";
 export default {
@@ -46,59 +47,65 @@ export default {
       });
     }
   },
-  mounted() {}
+  mounted() {
+    this.$http.get("http://tracy-word.0ooops.com/version").then(res => {
+      const data = res.data
+      this.version = data.version
+      this.lastUpdateDate = dayjs(data.update)
+    });
+  }
 };
 </script>
 
 <style lang="less" scoped>
-  .welcome {
+.welcome {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  .left {
+    flex: 1 1 auto;
     display: flex;
-    width: 100vw;
-    height: 100vh;
-    .left {
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        .logo-area img {
-            width: 300px;
-            height: 300px;
-            display: inherit;
-            margin: 0 auto;
-        }
-        .info-area {
-            h2 {
-                text-align: center;
-            }
-            p {
-                text-align: center;
-            }
-        }
-        p.time {
-            text-align: center;
-            margin-top: 20px;
-        }
+    flex-direction: column;
+    justify-content: space-around;
+    .logo-area img {
+      width: 300px;
+      height: 300px;
+      display: inherit;
+      margin: 0 auto;
     }
-    .right {
-        flex: 0 0 400px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-        .logo-area img {
-            width: 200px;
-            height: 200px;
-            display: inherit;
-            margin: 0 auto;
-            border-radius: 20px;
-        }
-        .button-area {
-            button {
-                width: 200px;
-                margin: 0 auto;
-                display: inherit;
-            }
-        }
+    .info-area {
+      h2 {
+        text-align: center;
+      }
+      p {
+        text-align: center;
+      }
     }
+    p.time {
+      text-align: center;
+      margin-top: 20px;
+    }
+  }
+  .right {
+    flex: 0 0 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    .logo-area img {
+      width: 200px;
+      height: 200px;
+      display: inherit;
+      margin: 0 auto;
+      border-radius: 20px;
+    }
+    .button-area {
+      button {
+        width: 200px;
+        margin: 0 auto;
+        display: inherit;
+      }
+    }
+  }
 }
 </style>
