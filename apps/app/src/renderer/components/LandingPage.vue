@@ -10,7 +10,7 @@
       </div>
       <p class="time">
         last update:
-        {{ lastUpdateDate }}
+        <Time :time="lastUpdateDate" />
       </p>
     </div>
     <div class="right">
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
 import TracyImg from "@/assets/tracy.jpg";
 import StefanieImg from "@/assets/stefanie.jpg";
 export default {
@@ -34,7 +33,7 @@ export default {
       TracyImg,
       StefanieImg,
       version: "检查中",
-      lastUpdateDate: new Date()
+      lastUpdateDate: new Date('2019-3-22')
     };
   },
   methods: {
@@ -51,7 +50,7 @@ export default {
     this.$http.get("http://tracy-word.0ooops.com/version").then(res => {
       const data = res.data
       this.version = data.version
-      this.lastUpdateDate = dayjs(data.update)
+      this.lastUpdateDate = new Date(data.update)
     });
   }
 };
