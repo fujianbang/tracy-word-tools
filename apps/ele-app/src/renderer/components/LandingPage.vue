@@ -18,7 +18,7 @@
         <img :src="StefanieImg">
       </div>
       <div class="button-area">
-        <a-button type="primary" ghost @click="enterHandle">立即进入</a-button>
+        <Button type="primary" ghost @click="enterHandle">立即进入</Button>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@ export default {
     return {
       TracyImg,
       StefanieImg,
-      version: "20190306",
+      version: "检查中",
       lastUpdateDate: new Date()
     };
   },
