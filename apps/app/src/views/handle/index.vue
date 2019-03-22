@@ -8,13 +8,18 @@
             <Upload
                 multiple
                 type="drag"
-                action="http://127.0.0.1:9090/upload"
+                action="http://tracy-word.0ooops.com/upload"
+                :on-error="uploadError"
                 :on-success="uploadSuccess">
                 <div style="padding: 20px 0">
                     <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
                     <p>Click or drag files here to upload</p>
                 </div>
             </Upload>
+
+            <div class="footer">
+                <Button type="error" long @click="clearHistory">清除历史</Button>
+            </div>
         </div>
     </div>
 </template>
@@ -33,6 +38,16 @@ export default {
         uploadSuccess(response, file, fileList) {
             this.result = response.data
             // response.filename
+        },
+        uploadError(error, file, fileList) {
+            this.result = "出错啦"
+            this.$Message.error({
+                content: "出错啦，赶紧联系我！！！",
+                duration: 10
+            })
+        },
+        clearHistory() {
+            this.result = "已清除..."
         }
     },
     mounted() {
